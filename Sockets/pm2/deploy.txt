@@ -1,0 +1,84 @@
+Backend
+
+Certainly! I'll provide you with general instructions for deploying the Node.js application using `pm2` and deploying it on Heroku. Please note that the specific steps may vary based on your hosting provider and environment.
+
+### Deploying with `pm2`:
+
+1. **Install `pm2` globally:**
+   ```bash
+   npm install -g pm2
+   ```
+
+2. **Start the Node.js application with `pm2`:**
+   ```bash
+   pm2 start server.js --name my-websocket-app
+   ```
+   - This command starts the Node.js application (`server.js`) and names the process as "my-websocket-app." Adjust the name according to your preference.
+
+3. **Monitor the application:**
+   ```bash
+   pm2 monit
+   ```
+   - This command opens a monitoring interface that allows you to view logs, monitor resource usage, and manage your application.
+
+4. **Save the process list:**
+   ```bash
+   pm2 save
+   ```
+   - This command saves the current list of managed processes so that they are automatically restarted upon system reboot.
+
+### Deploying on Heroku:
+
+1. **Create a Heroku account:**
+   - If you don't have a Heroku account, sign up at [Heroku](https://signup.heroku.com/).
+
+2. **Install Heroku CLI:**
+   - Download and install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) for your operating system.
+
+3. **Login to Heroku:**
+   ```bash
+   heroku login
+   ```
+   - Follow the prompts to log in to your Heroku account.
+
+4. **Navigate to your project directory:**
+   ```bash
+   cd /path/to/your/nodejs/project
+   ```
+
+5. **Initialize a Git repository (if not done already):**
+   ```bash
+   git init
+   ```
+
+6. **Create a `Procfile`:**
+   - Create a file named `Procfile` (without any file extension) in your project's root directory. Add the following line to specify the process type:
+     ```
+     web: node server.js
+     ```
+
+7. **Commit changes to Git:**
+   ```bash
+   git add .
+   git commit -m "Initial commit for Heroku deployment"
+   ```
+
+8. **Create a new Heroku app:**
+   ```bash
+   heroku create your-websocket-app-name
+   ```
+   - Replace `your-websocket-app-name` with a unique name for your Heroku app.
+
+9. **Deploy your application:**
+   ```bash
+   git push heroku master
+   ```
+   - This command deploys your Node.js application to Heroku.
+
+10. **Open your deployed app in the browser:**
+    ```bash
+    heroku open
+    ```
+    - This opens your deployed application in the default web browser.
+
+These steps provide a basic guide for deploying a Node.js application using `pm2` and Heroku. Adjustments may be needed based on your specific application requirements and hosting provider. For production deployments, it's important to consider security measures, environment configuration, and any other specific considerations for your application.
